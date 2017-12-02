@@ -9,6 +9,7 @@ vimrc()
   cat > .vimrc <<_VIMRC_
 set nobackup
 set noswapfile
+set modeline
 colorscheme desert256
 _VIMRC_
 }
