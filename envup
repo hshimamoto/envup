@@ -48,6 +48,8 @@ gitconfig()
 _GITCONFIG_
   fi
   cat >> .gitconfig <<_GITCONFIG_
+[core]
+	editor = vim
 [user]
 	name = Hiroshi Shimamoto
 	email = hshimamoto@users.noreply.github.com
