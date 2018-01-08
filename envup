@@ -70,6 +70,20 @@ sshconfig()
   mkdir keys
 }
 
+screenrc()
+{
+  echo "screenrc"
+  if [ -e .screenrc ]; then
+    return
+  fi
+  cat > .screenrc <<_SCREENRC_
+startup_message off
+caption always "%{= bk} %?%F%{b kr}%? %?%h%:%n %t%? %{-}"
+hardstatus alwayslastline "%{= Gk} %L=%-w%45L>%n %t %+w %-24<%=[%l] %C%a "
+termcapinfo xterm* ti@:te@
+_SCREENRC_
+}
+
 checkproxy()
 {
   if [ -n "$http_proxy" ]; then
@@ -93,3 +107,4 @@ checkproxy
 vimfiles
 gitconfig
 sshconfig
+screenrc
