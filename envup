@@ -94,7 +94,7 @@ checkproxy()
     return
   fi
   if [ -e .curlrc ]; then
-    http_proxy=`grep 'proxy' .curlrc | awk -F'=' '{print $3}'`
+    http_proxy=`grep 'proxy' .curlrc | awk -F'=' '{print $2}'`
     export http_proxy
   fi
 }
