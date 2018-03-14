@@ -68,6 +68,7 @@ sshconfig()
   fi
   mkdir hosts
   mkdir keys
+  cd ..
 }
 
 screenrc()
