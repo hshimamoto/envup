@@ -56,6 +56,24 @@ _GITCONFIG_
 _GITCONFIG_
 }
 
+sshconfiggo()
+{
+  binxzurl=https://raw.githubusercontent.com/hshimamoto/sshconfiggo/x86_64-linux/sshcompile.xz
+  mkdir bin
+  cd bin
+  curl -L -O $binxzurl
+  xz -d sshcompile.xz
+  chmod +x sshcompile
+  cd ..
+}
+
+sshconfigrb()
+{
+  if [ ! -d bin ]; then
+    git clone https://github.com/hshimamoto/sshconfigrb.git bin
+  fi
+}
+
 sshconfig()
 {
   if [ ! -d .ssh ]; then
@@ -63,11 +81,11 @@ sshconfig()
     chmod 700 .ssh
   fi
   cd .ssh
-  if [ ! -d bin ]; then
-    git clone https://github.com/hshimamoto/sshconfigrb.git bin
-  fi
   mkdir hosts
   mkdir keys
+
+  sshconfiggo
+
   cd ..
 }
 
