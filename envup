@@ -19,10 +19,29 @@ _VIMRC_
 " vim-plug
 call plug#begin('~/.vim/plugged')
 " list plugins
+" TAG VIM_PLUG_MARK
 call plug#end()
 "================ END vim-plug
 _VIMRC_VIM_PLUG_
   fi
+}
+
+vimplug_lightline()
+{
+  # Plug 'itchyny/lightline.vim'
+  grep -q lightline.vim .vimrc
+  if [ $? -eq 0 ]; then
+    return
+  fi
+  mark="\" TAG VIM_PLUG_MARK"
+  cp -a .vimrc .vimrc.old
+  sed -e "s/$mark.*\$/Plug 'itchyny\/lightline.vim'\n$mark/" .vimrc.old > .vimrc
+  vim +PlugInstall +qa
+  cat >> .vimrc <<_VIMRC_VIM_PLUG_LIGHTLINE_
+
+" for lightline
+set laststatus=2
+_VIMRC_VIM_PLUG_LIGHTLINE_
 }
 
 vimplug()
@@ -55,6 +74,7 @@ vimfiles()
   vimcolors
   vimplug
   vimrc
+  vimplug_lightline
 }
 
 gitconfig()
