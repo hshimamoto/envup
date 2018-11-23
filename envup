@@ -95,8 +95,8 @@ _GITCONFIG_
 [core]
 	editor = vim
 [user]
-	name = Hiroshi Shimamoto
-	email = hshimamoto@users.noreply.github.com
+	name = $name
+	email = $user@users.noreply.github.com
 _GITCONFIG_
 }
 
@@ -165,6 +165,12 @@ checkproxy()
 echo "envup start"
 
 cd $HOME
+
+name='Hiroshi Shimamoto'
+user=`whoami`
+if [ "$user" != "hshimamoto" ]; then
+  name=$user
+fi
 
 checkproxy
 vimfiles
