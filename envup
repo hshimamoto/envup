@@ -1,6 +1,8 @@
 #!/bin/bash
 # vim: set sw=2 sts=2:
 
+curlopt=-k
+
 vimrc()
 {
   if [ -e .vimrc ]; then
@@ -52,7 +54,7 @@ vimplug()
   fi
   # download
   echo "getting vim-plug"
-  curl -L -o .vim/autoload/plug.vim \
+  curl $curlopt -L -o .vim/autoload/plug.vim \
     'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 }
 
@@ -64,7 +66,7 @@ vimcolors()
   fi
   # download
   echo "getting desert256.vim"
-  curl -L -o .vim/colors/desert256.vim \
+  curl $curlopt -L -o .vim/colors/desert256.vim \
     'http://www.vim.org/scripts/download_script.php?src_id=4055'
 }
 
@@ -105,7 +107,7 @@ sshconfiggo()
   binxzurl=https://raw.githubusercontent.com/hshimamoto/sshconfiggo/x86_64-linux/sshcompile.xz
   mkdir bin
   cd bin
-  curl -L -O $binxzurl
+  curl $curlopt -L -O $binxzurl
   xz -d sshcompile.xz
   chmod +x sshcompile
   cd ..
