@@ -112,12 +112,14 @@ _GITCONFIG_
 sshconfiggo()
 {
   binxzurl=https://raw.githubusercontent.com/hshimamoto/sshconfiggo/x86_64-linux/sshcompile.xz
-  mkdir bin
+  mkdir bin 2>/dev/null
   cd bin
-  curl $curlopt -L -O $binxzurl
-  xz -d sshcompile.xz
-  chmod +x sshcompile
-  binlink $HOME/.ssh/bin/sshcompile sshcompile
+  if [ ! -e sshcompile ]; then
+    curl $curlopt -L -O $binxzurl
+    xz -d sshcompile.xz
+    chmod +x sshcompile
+    binlink $HOME/.ssh/bin/sshcompile sshcompile
+  fi
   cd ..
 }
 
@@ -135,8 +137,8 @@ sshconfig()
     chmod 700 .ssh
   fi
   cd .ssh
-  mkdir hosts
-  mkdir keys
+  mkdir hosts 2>/dev/null
+  mkdir keys 2>/dev/null
 
   sshconfiggo
 
