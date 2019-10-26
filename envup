@@ -3,6 +3,13 @@
 
 curlopt=-k
 
+binlink()
+{
+  src=$1
+  cmd=$2
+  ln -s $src $HOME/bin/$cmd
+}
+
 vimrc()
 {
   if [ -e .vimrc ]; then
@@ -110,6 +117,7 @@ sshconfiggo()
   curl $curlopt -L -O $binxzurl
   xz -d sshcompile.xz
   chmod +x sshcompile
+  binlink $HOME/.ssh/bin/sshcompile sshcompile
   cd ..
 }
 
@@ -164,6 +172,13 @@ checkproxy()
   fi
 }
 
+binfiles()
+{
+  if [ ! -d bin ]; then
+    mkdir bin
+  fi
+}
+
 echo "envup start"
 
 cd $HOME
@@ -175,6 +190,7 @@ if [ "$user" != "hshimamoto" ]; then
 fi
 
 checkproxy
+binfiles
 vimfiles
 gitconfig
 sshconfig
