@@ -10,6 +10,16 @@ binlink()
   ln -s $src $HOME/bin/$cmd
 }
 
+fzfinstall()
+{
+  if [ -d ~/.fzf ]; then
+    return
+  fi
+  echo "Install fzf"
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  yes | ~/.fzf/install
+}
+
 vimrc()
 {
   if [ -e .vimrc ]; then
@@ -197,3 +207,4 @@ vimfiles
 gitconfig
 sshconfig
 screenrc
+fzfinstall
