@@ -98,10 +98,10 @@ vimfiles()
 
 gitconfig()
 {
-  echo "gitconfig"
   if [ -e .gitconfig ]; then
     return
   fi
+  echo "generate gitconfig"
   if [ -n "$http_proxy" ]; then
     cat >> .gitconfig <<_GITCONFIG_
 [http]
