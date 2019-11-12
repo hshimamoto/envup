@@ -3,6 +3,27 @@
 
 curlopt=-k
 
+checktools()
+{
+  need=""
+  which curl
+  if [ $? -ne 0 ]; then
+    need="$need curl"
+  fi
+  which git
+  if [ $? -ne 0 ]; then
+    need="$need git"
+  fi
+  which vim
+  if [ $? -ne 0 ]; then
+    need="$need vim"
+  fi
+  if [ "$need" != "" ]; then
+    echo "Install$need"
+    exit 1
+  fi
+}
+
 binlink()
 {
   src=$1
@@ -203,6 +224,7 @@ if [ "$user" != "hshimamoto" ]; then
   name=$user
 fi
 
+checktools
 checkproxy
 binfiles
 vimfiles
