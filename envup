@@ -214,6 +214,28 @@ binfiles()
   fi
 }
 
+cronfiles()
+{
+  if [ ! -d zz_cron ]; then
+    mkdir zz_cron
+  fi
+  if [ ! -e zz_cron/crontab ]; then
+    echo "generate crontab template"
+    cat > zz_cron/crontab <<_CRONTAB_
+@reboot /bin/bash ~/zz_cron/jobs.sh
+*/1 * * * * /bin/bash ~/zz_cron/jobs.sh
+_CRONTAB_
+  fi
+  if [ ! -e zz_cron/jobs.sh ]; then
+    echo "generate jobs script"
+    cat > zz_cron/jobs.sh <<_JOBS_
+#!/bin/bash
+cd \$(dirname \$0)
+export PATH=\$PATH:~/bin
+_JOBS_
+  fi
+}
+
 echo "envup start"
 
 cd $HOME
@@ -232,3 +254,4 @@ gitconfig
 sshconfig
 screenrc
 fzfinstall
+cronfiles
