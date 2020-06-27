@@ -233,6 +233,7 @@ _CRONTAB_
 cd \$(dirname \$0)
 export PATH=\$PATH:~/bin
 _JOBS_
+    chmod +x zz_cron/jobs.sh
   fi
 }
 
