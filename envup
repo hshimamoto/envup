@@ -52,9 +52,12 @@ set noswapfile
 set modeline
 
 " hack desert256 color
-autocmd colorscheme * highlight LineNr ctermfg=7 ctermbg=17
-autocmd colorscheme * highlight CursorLineNr ctermfg=228 ctermbg=17
-set number relativenumber
+if (&term =~ 'xterm' && &t_Co == 256)
+  set t_ut=
+  autocmd colorscheme * highlight LineNr ctermfg=7 ctermbg=17
+  autocmd colorscheme * highlight CursorLineNr ctermfg=228 ctermbg=17
+  set number relativenumber
+endif
 
 colorscheme desert256
 _VIMRC_
