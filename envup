@@ -18,6 +18,14 @@ checktools()
   if [ $? -ne 0 ]; then
     need="$need vim"
   fi
+  which tar
+  if [ $? -ne 0 ]; then
+    need="$need tar"
+  fi
+  which xz
+  if [ $? -ne 0 ]; then
+    need="$need xz"
+  fi
   if [ "$need" != "" ]; then
     echo "Install$need"
     exit 1
@@ -39,6 +47,16 @@ fzfinstall()
   echo "Install fzf"
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   yes | ~/.fzf/install
+}
+
+binariesinstall()
+{
+  echo "Install binaries"
+  if [ -d ~/.envup.binaries ]; then
+    return
+  fi
+  git clone --depth 1 https://github.com/hshimamoto/envup.binaries.git ~/.envup.binaries
+  ~/.envup.binaries/inst.sh
 }
 
 vimrc()
@@ -264,4 +282,5 @@ gitconfig
 sshconfig
 screenrc
 fzfinstall
+binariesinstall
 cronfiles
