@@ -50,6 +50,12 @@ vimrc()
 set nobackup
 set noswapfile
 set modeline
+
+" hack desert256 color
+autocmd colorscheme * highlight LineNr ctermfg=7 ctermbg=17
+autocmd colorscheme * highlight CursorLineNr ctermfg=228 ctermbg=17
+set number relativenumber
+
 colorscheme desert256
 _VIMRC_
   # vim-plug?
