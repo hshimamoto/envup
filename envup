@@ -211,7 +211,7 @@ screenrc()
   echo "generate .screenrc"
   cat > .screenrc <<_SCREENRC_
 startup_message off
-caption always "%{= bk} %?%F%{b kr}%? %?%h%:%n %t%? %{-}"
+caption always "%{= bk} %?%F%{b kr}%? %n: %t %{= bk}"
 hardstatus alwayslastline "%{= Gk} %L=%-w%45L>%n %t %+w %-24<%=[%l] %C%a "
 termcapinfo xterm* ti@:te@
 altscreen on
