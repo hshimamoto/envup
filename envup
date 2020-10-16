@@ -249,18 +249,11 @@ cronfiles()
   if [ ! -e zz_cron/crontab ]; then
     echo "generate crontab template"
     cat > zz_cron/crontab <<_CRONTAB_
-@reboot /bin/bash ~/zz_cron/boot.sh
-*/1 * * * * /bin/bash ~/zz_cron/jobs.sh
+@reboot /bin/bash ~/zz_cron/jobs.sh boot
+*/10 * * * * /bin/bash ~/zz_cron/jobs.sh 10m
+0 */8 * * * /bin/bash ~/zz_cron/jobs.sh 8h
 _CRONTAB_
   fi
-  if [ ! -e zz_cron/boot.sh ]; then
-    cat > zz_cron/boot.sh <<'_BOOT_'
-#!/bin/bash
-cd $(dirname $0)
-/bin/bash jobs.sh
-_BOOT_
-  fi
-    chmod +x zz_cron/boot.sh
   if [ ! -e zz_cron/jobs.sh ]; then
     echo "generate jobs script"
     cat > zz_cron/jobs.sh <<'_JOBS_'
