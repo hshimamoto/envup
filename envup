@@ -8,7 +8,7 @@ checktools()
   need=""
   which curl
   if [ $? -ne 0 ]; then
-    need="$need curl"
+    need="$need curl ca-certificates"
   fi
   which git
   if [ $? -ne 0 ]; then
