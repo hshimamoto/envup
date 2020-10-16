@@ -234,10 +234,13 @@ checkproxy()
   fi
 }
 
-binfiles()
+makedirs()
 {
   if [ ! -d bin ]; then
     mkdir bin
+  fi
+  if [ ! -d .logs ]; then
+    mkdir .logs
   fi
 }
 
@@ -278,7 +281,7 @@ fi
 
 checktools
 checkproxy
-binfiles
+makedirs
 vimfiles
 gitconfig
 sshconfig
