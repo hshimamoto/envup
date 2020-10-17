@@ -167,27 +167,6 @@ _GITCONFIG_
 _GITCONFIG_
 }
 
-sshconfiggo()
-{
-  binxzurl=https://raw.githubusercontent.com/hshimamoto/sshconfiggo/x86_64-linux/sshcompile.xz
-  mkdir bin 2>/dev/null
-  cd bin
-  if [ ! -e sshcompile ]; then
-    curl $curlopt -L -O $binxzurl
-    xz -d sshcompile.xz
-    chmod +x sshcompile
-    binlink $HOME/.ssh/bin/sshcompile sshcompile
-  fi
-  cd ..
-}
-
-sshconfigrb()
-{
-  if [ ! -d bin ]; then
-    git clone https://github.com/hshimamoto/sshconfigrb.git bin
-  fi
-}
-
 sshconfig()
 {
   if [ ! -d .ssh ]; then
@@ -197,9 +176,6 @@ sshconfig()
   cd .ssh
   mkdir hosts 2>/dev/null
   mkdir keys 2>/dev/null
-
-  sshconfiggo
-
   cd ..
 }
 
