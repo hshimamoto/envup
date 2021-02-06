@@ -131,6 +131,12 @@ vimcolors()
   fi
   # download
   echo "getting desert256.vim"
+  # try github first
+  curl $curlopt -L -o .vim/colors/desert256.vim \
+    "https://raw.githubusercontent.com/brafales/vim-desert256/master/colors/desert256.vim"
+  if [ -e .vim/colors/desert256.vim ]; then
+    return
+  fi
   curl $curlopt -L -o .vim/colors/desert256.vim \
     'http://www.vim.org/scripts/download_script.php?src_id=4055'
 }
