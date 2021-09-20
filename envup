@@ -226,6 +226,22 @@ makedirs()
   fi
 }
 
+reinitpath()
+{
+  cat > bin/envup-test-yes <<_EOF_
+#!/bin/bash
+yes
+_EOF_
+  chmod +x bin/envup-test-yes
+  # test PATH
+  envup-test-yes &> /dev/null
+  if [ $? -ne 0 ]; then
+    export PATH=~/bin:$PATH
+  fi
+  rm -f bin/envup-test-yes
+  echo "current PATH:" $PATH
+}
+
 cronfiles()
 {
   if [ ! -d zz_cron ]; then
@@ -264,6 +280,7 @@ fi
 checktools
 checkproxy
 makedirs
+reinitpath
 vimfiles
 gitconfig
 sshconfig
