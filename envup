@@ -44,9 +44,23 @@ fzfinstall()
   if [ -d ~/.fzf ]; then
     return
   fi
+  if [ -n "$https_proxy" ]; then
+    if [ ! -x ~/bin/curl ]; then
+      # curl hack
+      def_curl=$(which curl)
+      cat > ~/bin/curl <<_EOF_
+#!/bin/bash
+$def_curl -k "\$@"
+_EOF_
+      chmod +x ~/bin/curl
+      echo "use wrapped curl:" $(which curl)
+    fi
+  fi
   echo "Install fzf"
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   yes | ~/.fzf/install
+  # anyway remove mycurl
+  rm -f ~/bin/curl
 }
 
 binariesinstall()
