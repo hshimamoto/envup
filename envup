@@ -69,7 +69,16 @@ binariesinstall()
   if [ -d ~/.envup.binaries ]; then
     return
   fi
-  git clone --depth 1 https://github.com/hshimamoto/envup.binaries.git ~/.envup.binaries
+  repo=https://github.com/hshimamoto/envup.binaries.git
+  arch=$(uname -m)
+  case $arch in
+  aarch64)
+    git clone --depth 1 --branch $arch $repo ~/.envup.binaries
+    ;;
+  *)
+    git clone --depth 1 $repo ~/.envup.binaries
+    ;;
+  esac
   ~/.envup.binaries/inst.sh
 }
 
