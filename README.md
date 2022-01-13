@@ -12,4 +12,4 @@ Required
 
 License
 -------
-MIT License Copyright (C) 2017-2021 Hiroshi Shimamoto
+MIT License Copyright (C) 2017-2022 Hiroshi Shimamoto

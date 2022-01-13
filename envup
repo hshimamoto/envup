@@ -251,17 +251,17 @@ makedirs()
 
 reinitpath()
 {
-  cat > bin/envup-test-yes <<_EOF_
+  cat > bin/envup-path-test <<_EOF_
 #!/bin/bash
-yes
+exit 0
 _EOF_
-  chmod +x bin/envup-test-yes
+  chmod +x bin/envup-path-test
   # test PATH
-  envup-test-yes &> /dev/null
+  envup-path-test &> /dev/null
   if [ $? -ne 0 ]; then
     export PATH=~/bin:$PATH
   fi
-  rm -f bin/envup-test-yes
+  rm -f bin/envup-path-test
   echo "current PATH:" $PATH
 }
 
